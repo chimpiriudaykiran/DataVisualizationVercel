@@ -5,6 +5,8 @@ import plotly.express as px
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 
+import chatgpt
+
 app = Flask(__name__)
 CORS(app, origins=["http://localhost"])
 
@@ -70,7 +72,12 @@ def grap():
     html_fig = fig.to_html(config={'scrollZoom': True, 'displayModeBar': True, 'displaylogo': False,
                                    'modeBarButtonsToRemove': ['select2d', 'lasso2d'], 'responsive': True})
 
-    final_json = {"graph": html_fig, "text": text}
+    try:
+        paraphrase = chatgpt.paraphrase(text)
+    except:
+        paraphrase = text
+
+    final_json = {"graph": html_fig, "text": paraphrase}
     return final_json
 
 @app.route('/')

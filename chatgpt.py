@@ -15,16 +15,17 @@ import  os
 from openai import OpenAI
 
 def paraphrase(text):
-  os.environ["OPENAI_API_KEY"] = "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"
-  # api_key = os.environ.get("OPENAI_API_KEY")
-  # print(api_key)
-  client = OpenAI()
-  completion = client.chat.completions.create(
-    model="gpt-4",
-    messages=[
-      {"role": "system", "content": "You are a helpful assistant to do the elabrate into 100 words of the given text. Avtive voice"},
-      {"role": "user", "content": text }
-    ]
-  )
+  if os.getenv('CHATGPT_ENABLE'):
+      client = OpenAI()
+      completion = client.chat.completions.create(
+        model="gpt-4",
+        messages=[
+          {"role": "system", "content": "You are a helpful assistant to do the elabrate into 100 words of the given text. Avtive voice"},
+          {"role": "user", "content": text }
+        ]
+      )
+      result = completion.choices[0].message.content
+  else:
+      result = text
 
-  return completion.choices[0].message.content
+  return result

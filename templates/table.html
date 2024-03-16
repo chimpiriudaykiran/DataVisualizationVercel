@@ -11,28 +11,29 @@
     <title>Data Visualization</title>
     <style>
         /* width */
-
+        
          ::-webkit-scrollbar {
             width: 5px;
+            height: 5px;
         }
         /* Track */
-
+        
          ::-webkit-scrollbar-track {
             box-shadow: inset 0 0 5px #00000061;
             border-radius: 10px;
         }
         /* Handle */
-
+        
          ::-webkit-scrollbar-thumb {
             background: #2e79aa;
             border-radius: 10px;
         }
         /* Handle on hover */
-
+        
          ::-webkit-scrollbar-thumb:hover {
             background: #091f54;
         }
-
+        
         .w3-theme {
             color: #fff !important;
             background-color: #122047 !important
@@ -48,15 +49,15 @@
             padding: 0.75rem;
             border-radius: 99px;
         }
-
+        
         .tabs * {
             z-index: 2;
         }
-
+        
         .container-radio input[type="radio"] {
             display: none;
         }
-
+        
         .tab {
             display: flex;
             align-items: center;
@@ -71,36 +72,36 @@
             transition: color 0.15s ease-in;
             margin: 0px;
         }
-
+        
         .container-radio input[type="radio"]:checked+label {
             color: #003c96;
         }
-
+        
         .container-radio input[type="radio"]:checked+label>.notification {
             background-color: #003c96;
             color: #fff;
         }
-
+        
         .container-radio input[id="radio-1"]:checked~.glider {
             transform: translate(-250%, -50%);
         }
-
+        
         .container-radio input[id="radio-2"]:checked~.glider {
             transform: translate(-150%, -50%);
         }
-
+        
         .container-radio input[id="radio-3"]:checked~.glider {
             transform: translate(-50%, -50%);
         }
-
+        
         .container-radio input[id="radio-4"]:checked~.glider {
             transform: translate(50%, -50%);
         }
-
+        
         .container-radio input[id="radio-5"]:checked~.glider {
             transform: translate(150%, -50%);
         }
-
+        
         .glider {
             position: absolute;
             display: flex;
@@ -118,7 +119,7 @@
             left: 50%;
             transform: translate(-250%, -50%);
         }
-
+        
         @media (max-width: 700px) {
             .tabs {
                 transform: scale(0.6);
@@ -129,7 +130,7 @@
          :root {
             --plotly-template: seaborn;
         }
-
+        
         iframe body {
             margin: 0;
         }
@@ -164,7 +165,7 @@
     <link rel="stylesheet" href="./static/css/darkmode.css">
 </head>
 
-<body id="page-top" style="overflow: hidden" onload="initializeHome();">
+<body id="page-top" style="overflow: hidden" onload="initializeIndex()">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <div id="navbar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" style="background-color: #122047; background-image: linear-gradient(180deg,#102153 10%,#101520 100%); background-size: cover;">
@@ -247,358 +248,180 @@
             </div>
         </div>
         <!-- End of Sidebar -->
-        <div id="content" style="margin-left: 6.5rem!important;width: 100%;">
-            <div style="width: 80%; margin: 0px auto;">
-                <div style="color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
-                    <div class="" aria-disabled="false" style="border: black;position: relative;width: 100%;height: auto;border-width: 1px;border-style: dashed;border-radius: 5px;text-align: center;margin: 5px;">
-                        <input type="file" id="upload-data" accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden/>
-                        <button for="upload-data" class="shadow" id="upload-button" style="color: white; background-color: rgb(0, 123, 255); padding: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="document.getElementById('upload-data').click()">Upload File</button>
-                    </div>
-                </div>
-
-                <div style="margin-left: 20px; margin-right: 20px; display: flex; justify-content: space-evenly; align-items: flex-end; margin-bottom: 5px;">
-                    <div class="container-radio">
-                        <div class="tabs">
-                            <input type="radio" id="radio-1" name="graph-type" checked value="bar" />
-                            <label class="tab" for="radio-1">Bar</label>
-                            <input type="radio" id="radio-2" name="graph-type" value="pie" />
-                            <label class="tab" for="radio-2">Pie</label>
-                            <input type="radio" id="radio-3" name="graph-type" value="scatter" />
-                            <label class="tab" for="radio-3">Scatter</label>
-                            <input type="radio" id="radio-4" name="graph-type" value="line" />
-                            <label class="tab" for="radio-4">Line</label>
-                            <input type="radio" id="radio-5" name="graph-type" value="histogram" />
-                            <label class="tab" for="radio-5">Histogram</label>
-                            <span class="glider"></span>
-                        </div>
-                    </div>
-
-                    <div style="width: 100%; margin-left: 10px; display: flex; flex-direction: column;">
-                        <div style="display: flex;">
-                            <div style="display: inline-block; width: 170px;">
-                                <label style="margin-right: 10px;">X-Axis:</label>
-                            </div>
-                            <div style="flex:1;"></div>
-                            <div style="display: inline-block; width: 170px;">
-                                <label style="margin-right: 10px;">Y-Axis:</label>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; align-content: center;">
-                            <div style="display: inline-block; width: 170px;">
-                                <select class="form-select md-3" id="x-axis-dropdown" style="box-shadow: 2px 4px 13px 0px rgb(0, 123, 255, 0.15); font-size: var(--bs-body-font-size); font-weight: var(--bs-body-font-weight); line-height: var(--bs-body-line-height);">
-                              <option selected hidden>Select X-axis</option>
-                            </select>
-                            </div>
-
-                            <div style="flex:1;"></div>
-                            <i class="fa-solid fa-repeat" style="
-                                      cursor: pointer;
-                                      font-size: var(--bs-body-font-size);
-                                      color: var(--bs-body-color);
-                                      line-height: var(--bs-body-line-height);" onclick="swapValues();" title="Swap Values"></i>
-                            <div style="flex:1;"></div>
-
-                            <div style="display: inline-block; width: 170px;">
-                                <select class="form-select md-3" id="y-axis-dropdown" style=" box-shadow: 2px 4px 13px 0px rgb(0, 123, 255, 0.15); font-size: var(--bs-body-font-size); font-weight: var(--bs-body-font-weight); line-height: var(--bs-body-line-height);">
-                            <option selected hidden>Select Y-axis</option>
-                        </select>
-                            </div>
+        <div id="content" style="margin-left: 6.5rem!important;width: 100%; padding: 10px;">
+            <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded rounded border" style="
+            position: relative;
+            min-height: 640px;
+        ">
+                <div style="width: 80%; margin: 0px auto;">
+                    <div style="color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
+                        <div class="" aria-disabled="false" style="border: black;position: relative;width: 100%;height: auto;border-width: 1px;border-style: dashed;border-radius: 5px;text-align: center;margin: 5px;">
+                            <input type="file" id="upload-data" accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden/>
+                            <button for="upload-data" class="shadow" id="upload-button" style="color: white; background-color: rgb(0, 123, 255); padding: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="document.getElementById('upload-data').click()">Upload File</button>
                         </div>
                     </div>
                 </div>
 
-
-
-                <div style="display: flex;margin-bottom: 15px;flex-direction: row;flex-wrap: nowrap;align-content: center;justify-content: space-around;align-items: center;">
-                    <div>
-                        <label for="amountrange">Select the amount of data:</label>
-                        <br>
-                        <div class="range-slider" style='--min:0; --max:100; --step:5; --value:10; --text-value:"10";'>
-                            <input id="amountrange" type="range" min="0" max="100" step="5" value="10" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
-                            <output></output>
-                            <div class="range-slider__progress"></div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table table-striped">
+                                <thead>
+                                    <!-- Table headers will be generated dynamically -->
+                                </thead>
+                                <tbody>
+                                    <!-- Table body will be generated dynamically -->
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div>
-                        <button id="submit" class="shadow" style="color: white; background-color: rgb(0, 123, 255); padding: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="callGraph()">Submit</button>
-                    </div>
-                </div>
-                <div id="texts" style="width:100%; height:100%;display: inline;">
-                    <div style="position: relative;z-index: 10;display: flex;width: 100%;height: 100%;align-content: flex-start;justify-content: center;align-items: flex-start;flex-direction: row;flex-wrap: wrap;">
-                        <div class="container-text w3-theme w3-round-xxlarge" style="min-height: 40px; min-width: 120px; max-width: 100%; text-align: center;">
-                            <p id="recognizedText" align="center" style="padding-right: 10px;padding-left: 10px;position: relative;font-family:'Fredoka One', cursive;text-align: center!important;white-space: normal;overflow-wrap: anywhere;top: 50%;left: 50%;transform: translate(-50%, 50%);">You can see the recognized text here</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="chart_div" style="height: 470px;">
-                    <div id="loading-spinner" style="width:100%; height:100%;display: none;">
-                        <div class="load-wrapp">
-                            <div class="load-1">
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <iframe id="html-iframe" style="display: none;" scrolling="no"></iframe>
-                </div>
-                <div id="text-output"></div>
-                <br>
-                <br>
-            </div>
-        </div>
-        </div>
-
-        <!---Help Modal-->
-        <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="HelpModal" aria-hidden="true" onchange="stopSpeaking()">
-            <div class="modal-dialog modal-l modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Help</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopSpeaking()"></button>
-                    </div>
-                    <div class="modal-body" id="modal-body">
-                        <p><strong>Key Combination: Ctrl + Alt + S</strong></p>
-                        <p><strong>Action:</strong> Toggles speech mode on and off.</p>
-                        <p><strong>Description:</strong> This shortcut checks if the keys pressed are Ctrl, Alt, and 's'. If so, it toggles speech mode by checking the current state stored in a cookie and then either turns speech mode on or off accordingly.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + U</strong></p>
-                        <p><strong>Action:</strong> Triggers the click event of the element with the ID 'upload-data'.</p>
-                        <p><strong>Description:</strong> This shortcut is used for triggering an upload action, possibly for uploading data or files.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + R</strong></p>
-                        <p><strong>Action:</strong> Toggles graphs on and off.</p>
-                        <p><strong>Description:</strong> This shortcut toggles the visibility of graphs on the web page.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + X</strong></p>
-                        <p><strong>Action:</strong> Toggles the X-axis of graphs.</p>
-                        <p><strong>Description:</strong> This shortcut toggles the X-axis display of the graphs.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + Y</strong></p>
-                        <p><strong>Action:</strong> Toggles the Y-axis of graphs.</p>
-                        <p><strong>Description:</strong> This shortcut toggles the Y-axis display of the graphs.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + Enter</strong></p>
-                        <p><strong>Action:</strong> Calls a graph function.</p>
-                        <p><strong>Description:</strong> This shortcut triggers a function that generates or updates a graph.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + Arrow Right</strong></p>
-                        <p><strong>Action:</strong> Updates the range value (likely for a slider or similar UI element) by incrementing it.</p>
-                        <p><strong>Description:</strong> This shortcut is used to increment a range value, possibly for navigating through data or adjusting a parameter.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + Arrow Left</strong></p>
-                        <p><strong>Action:</strong> Updates the range value by decrementing it.</p>
-                        <p><strong>Description:</strong> Similar to the previous shortcut, this one decrements the range value.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + T</strong></p>
-                        <p><strong>Action:</strong> Speaks out text content.</p>
-                        <p><strong>Description:</strong> This shortcut, when pressed, speaks out the content of an element with the ID 'text-output', provided that speech mode is enabled.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + C</strong></p>
-                        <p><strong>Action:</strong> Swaps values.</p>
-                        <p><strong>Description:</strong> This shortcut triggers a function to swap values, possibly within the application context.</p>
-                        <hr>
-                        <p><strong>Key Combination: Ctrl + Alt + M</strong></p>
-                        <p><strong>Action:</strong> Stops speaking.</p>
-                        <p><strong>Description:</strong> This shortcut stops any ongoing speech output.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopSpeaking()">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="./static/vendor/jquery/jquery.min.js"></script>
-        <script src="./static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="./static/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="./static/js/sb-admin-2.min.js"></script>
+    <!---Help Modal-->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="HelpModal" aria-hidden="true" onchange="stopSpeaking()">
+        <div class="modal-dialog modal-l modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Help</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopSpeaking()"></button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <p><strong>Key Combination: Ctrl + Alt + S</strong></p>
+                    <p><strong>Action:</strong> Toggles speech mode on and off.</p>
+                    <p><strong>Description:</strong> This shortcut checks if the keys pressed are Ctrl, Alt, and 's'. If so, it toggles speech mode by checking the current state stored in a cookie and then either turns speech mode on or off accordingly.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + U</strong></p>
+                    <p><strong>Action:</strong> Triggers the click event of the element with the ID 'upload-data'.</p>
+                    <p><strong>Description:</strong> This shortcut is used for triggering an upload action, possibly for uploading data or files.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + R</strong></p>
+                    <p><strong>Action:</strong> Toggles graphs on and off.</p>
+                    <p><strong>Description:</strong> This shortcut toggles the visibility of graphs on the web page.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + X</strong></p>
+                    <p><strong>Action:</strong> Toggles the X-axis of graphs.</p>
+                    <p><strong>Description:</strong> This shortcut toggles the X-axis display of the graphs.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + Y</strong></p>
+                    <p><strong>Action:</strong> Toggles the Y-axis of graphs.</p>
+                    <p><strong>Description:</strong> This shortcut toggles the Y-axis display of the graphs.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + Enter</strong></p>
+                    <p><strong>Action:</strong> Calls a graph function.</p>
+                    <p><strong>Description:</strong> This shortcut triggers a function that generates or updates a graph.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + Arrow Right</strong></p>
+                    <p><strong>Action:</strong> Updates the range value (likely for a slider or similar UI element) by incrementing it.</p>
+                    <p><strong>Description:</strong> This shortcut is used to increment a range value, possibly for navigating through data or adjusting a parameter.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + Arrow Left</strong></p>
+                    <p><strong>Action:</strong> Updates the range value by decrementing it.</p>
+                    <p><strong>Description:</strong> Similar to the previous shortcut, this one decrements the range value.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + T</strong></p>
+                    <p><strong>Action:</strong> Speaks out text content.</p>
+                    <p><strong>Description:</strong> This shortcut, when pressed, speaks out the content of an element with the ID 'text-output', provided that speech mode is enabled.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + C</strong></p>
+                    <p><strong>Action:</strong> Swaps values.</p>
+                    <p><strong>Description:</strong> This shortcut triggers a function to swap values, possibly within the application context.</p>
+                    <hr>
+                    <p><strong>Key Combination: Ctrl + Alt + M</strong></p>
+                    <p><strong>Action:</strong> Stops speaking.</p>
+                    <p><strong>Description:</strong> This shortcut stops any ongoing speech output.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopSpeaking()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- <script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="./static/vendor/jquery/jquery.min.js"></script>
+    <script src="./static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="./static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="./static/js/sb-admin-2.min.js"></script>
 
-                const texts = document.querySelector(".texts");
-                let isSpeaking = false;
-                let readfiles = true;
-                let filenumber = 0;
-                let readgraph = true;
-                let graphtype = 0;
+    <script>
+        document.getElementById('upload-data').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            var finalData = [];
+            var headerNames = [];
+            var reader = new FileReader();
 
-                window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-                const recognition = new SpeechRecognition();
-                recognition.interimResults = true;
-                recognition.lang = 'en-US';
-
-                let p = document.createElement("p");
-                const files = ["wine_dataset.xlsx", "shopping_trends_updated.csv"];
-                // Simulated file list
-                const visualizationTypes = ["Bar graph", "Pie", "Scatter", "Line", "Histogram"];
-
-                recognition.addEventListener("result", (e)=>{
-                    let text = Array.from(e.results).map((result)=>result[0]).map((result)=>result.transcript).join("");
-
-                    if (e.results[0].isFinal) {
-                        p.innerText = text;
-                        texts.appendChild(p);
-
-                        if (text.toLowerCase().includes("visualisation") || text.toLowerCase().includes("visualization")) {
-                            if (readfiles == true) {
-                                text = '';
-                                listDownloadableFiles(files);
-                                console.log(files);
-                                readfiles = false;
+            if (file) {
+                if (file.name.endsWith('.csv')) {
+                    reader.onload = function(event) {
+                        Papa.parse(event.target.result, {
+                            complete: function(results) {
+                                var filteredData = results.data.filter(row => row.some(cell => cell.trim() !== ''));
+                                var parsedData = filteredData.map(row => row.map(cell => isNaN(cell) ? String(cell) : parseFloat(cell)));
+                                parsedData.sort((a, b) => a[0] - b[0]);
+                                headerNames = filteredData[0];
+                                finalData = parsedData;
+                                processData(finalData.slice(1), headerNames);
                             }
-                        }
-
-                        if (readfiles == false && filenumber == 0) {
-                            if (isNaN(parseInt(text.toLowerCase()))) {
-                                filenumber = parseInt(wordToNumber(text.toLowerCase()));
-                                console.log(filenumber);
-                            } else {
-                                filenumber = parseInt(text.toLowerCase());
-                            }
-                            if (!isNaN(filenumber) && filenumber >= 1 && filenumber <= files.length) {
-                                speak(`You selected file number ${filenumber}, ${files[filenumber - 1]}.`);
-                                text = '';
-                                offerVisualizationTypes();
-                                readgraph = false;
-                            }
-
-                        }
-                        if (readgraph == false && graphtype == 0) {
-                            if (isNaN(parseInt(text.toLowerCase()))) {
-                                graphtype = parseInt(wordToNumber(text.toLowerCase()));
-                                console.log(graphtype);
-                            } else {
-                                graphtype = parseInt(text.toLowerCase());
-                            }
-                            if (!isNaN(graphtype) && graphtype >= 1 && graphtype <= visualizationTypes.length) {
-                                speak(`You selected file number ${graphtype}, ${visualizationTypes[graphtype - 1]}.`);
-                                text = '';
-                                document.cookie = `filename=${files[filenumber - 1]}`;
-                                document.cookie = `graphtype=${visualizationTypes[graphtype - 1]}`;
-                                p.innerText = "Opening Visualization Page....";
-                                console.log(p.innerText);
-                                window.top.location = '/home';
-                            }
-                        }
-
-                    }
-                }
-                );
-
-                function listDownloadableFiles(files) {
-                    recognition.stop();
-                    speak("Listing available files for visualization.");
-                    files.forEach((file,index)=>{
-                        speak(`${index + 1}: ${file}`);
-                    }
-                    );
-                    setTimeout(()=>{
-                        // Wait for the speech synthesis to finish
-                        speak("Please say the number of the file you wish to choose for visualization.");
-                    }
-                    , 5000);
-                }
-
-                function offerVisualizationTypes() {
-                    speak("Please select a visualization type.");
-                    console.log(visualizationTypes);
-                    visualizationTypes.forEach((type,index)=>{
-                        speak(`${index + 1}: ${type}`);
-                    }
-                    );
-                }
-
-                function speak(text) {
-                    const msg = new SpeechSynthesisUtterance(text);
-                    msg.onstart = function() {
-                        isSpeaking = true;
-                        recognition.stop();
-                        // Ensure to stop recognition while speaking
-                    }
-                    ;
-                    msg.onend = function() {
-                        isSpeaking = false;
-                        setTimeout(()=>{
-                            recognition.start();
-                        }
-                        , 500);
-                    }
-                    ;
-                    window.speechSynthesis.speak(msg);
-                }
-
-                recognition.addEventListener("end", ()=>{
-                    if (!isSpeaking) {
-                        recognition.start();
-                    }
-                }
-                );
-                recognition.start();
-            </script>
-            <script>
-                document.addEventListener('DOMContentLoaded', (event)=>{
-                    // Function to speak text
-                    function speak(text) {
-                        const speech = new SpeechSynthesisUtterance(text);
-                        speechSynthesis.speak(speech);
-                    }
-
-                    // Function to read out file names
-                    function readOutFileNames() {
-                        const fileItems = document.querySelectorAll('#file-names-display li');
-                        console.log(fileItems);
-                        fileItems.forEach((item,index)=>{
-                            setTimeout(()=>{
-                                speak(item.textContent);
-                            }
-                            , index * 1000);
-                        }
-                        );
-                    }
-
-                    // Select the node that will be observed for mutations
-                    const targetNode = document.getElementById('file-names-display');
-
-                    // Options for the observer (which mutations to observe)
-                    const config = {
-                        attributes: false,
-                        childList: true,
-                        subtree: false
+                        });
                     };
+                    reader.readAsText(file);
+                } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+                    reader.onload = function(event) {
+                        var data = new Uint8Array(event.target.result);
+                        var workbook = XLSX.read(data, {
+                            type: 'array'
+                        });
+                        var sheetName = workbook.SheetNames[0];
+                        var sheet = workbook.Sheets[sheetName];
+                        var excelData = XLSX.utils.sheet_to_json(sheet, {
+                            header: 1
+                        });
 
-                    // Callback function to execute when mutations are observed
-                    const callback = function(mutationsList, observer) {
-                        for (let mutation of mutationsList) {
-                            if (mutation.type === 'childList') {
-                                // Once we detect a change in the child list, read out file names
-                                readOutFileNames();
-                                break;
-                                // Optional: Stop observing after the first change if you only need it once
-                            }
-                        }
+                        var filteredData = excelData.filter(row => row.some(cell => String(cell).trim() !== ''));
+                        var parsedData = filteredData.map(row => row.map(cell => isNaN(cell) ? String(cell) : parseFloat(cell)));
+                        parsedData.sort((a, b) => a[0] - b[0]);
+                        headerNames = filteredData[0];
+                        finalData = parsedData;
+                        processData(finalData.slice(1), headerNames);
                     };
-
-                    // Create an observer instance linked to the callback function
-                    const observer = new MutationObserver(callback);
-
-                    // Start observing the target node for configured mutations
-                    observer.observe(targetNode, config);
-
-                    // Optionally, you can stop observing at some point later
-                    // observer.disconnect();
+                    reader.readAsArrayBuffer(file);
+                } else {
+                    console.error('Unsupported file format');
                 }
-                );
-            </script> -->
+            }
+        });
 
-        <script src="./static/js/knobs.min.js"></script>
-        <script src="./static/js/knobs.js"></script>
+        function processData(data, headers) {
+            const tbody = document.querySelector('#dataTable tbody');
+            const thead = document.querySelector('#dataTable thead');
+
+            // Create table headers
+            let headerHTML = '';
+            headers.forEach(header => {
+                headerHTML += `<th scope="col">${header}</th>`;
+            });
+            thead.innerHTML = `<tr>${headerHTML}</tr>`;
+
+            // Create table rows
+            let tbodyHTML = '';
+            data.forEach(rowData => {
+                let rowHTML = '';
+                rowData.forEach(data => {
+                    rowHTML += `<td>${data}</td>`;
+                });
+                tbodyHTML += `<tr>${rowHTML}</tr>`;
+            });
+            tbody.innerHTML = tbodyHTML;
+        }
+    </script>
+
+    <script src="./static/js/knobs.min.js"></script>
+    <script src="./static/js/knobs.js"></script>
 </body>
 
 </html>

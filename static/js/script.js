@@ -646,11 +646,11 @@ function handleFileSelect() {
                     header: 1
                 });
 
-                var filteredData = excelData.filter(row => row.some(cell => cell.trim() !== ''));
+                var filteredData = excelData.filter(row => row.some(cell => String(cell).trim() !== ''));
                 var parsedData = filteredData.map(row => row.map(cell => isNaN(cell) ? String(cell) : parseFloat(cell)));
                 parsedData.sort((a, b) => a[0] - b[0]);
                 headerNames = filteredData[0];
-                finalData = pasedData;
+                finalData = parsedData;
 
                 updateXDropdown(headerNames);
                 updateYDropdown(headerNames);
@@ -757,7 +757,7 @@ function drawChart(data) {
 
     const iframe = document.getElementById('html-iframe');
     iframe.setAttribute('style', 'width:100%; height:100%; border:0;');
-
+    document.getElementById('chart_div').style.display = 'block';
     const url = '/chart';
 
     fetch(url, {
