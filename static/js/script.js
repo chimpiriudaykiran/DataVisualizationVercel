@@ -67,7 +67,7 @@ recognition.onresult = function(event) {
                     finalTranscript.toLowerCase().includes("dashboard")) {
                     speakText('Navigating to visualization page');
                     outputDiv.innerText = 'Navigating to visualization page';
-                    window.top.location = '.' + newPath + '/home.html';
+                    window.top.location = '.' + newPath + '/home';
                 }
             case 'home':
                 if (finalTranscript.toLowerCase().includes("start")) {
@@ -93,8 +93,11 @@ recognition.onresult = function(event) {
                     finalTranscript.toLowerCase().includes("index")) {
                     speakText('Navigating to home page');
                     outputDiv.innerText = 'Navigating to home page';
-                    window.top.location = '.' + newPath + '/index.html';
-                } else {
+                    window.top.location = '.' + newPath + '/';
+                } else if (finalTranscript.toLowerCase().includes("help")) {
+                    document.getElementById('helpButton').click();
+                }
+                else {
                     var selectedNumber;
                     if (isNaN(parseInt(finalTranscript.toLowerCase()))) {
                         selectedNumber = parseInt(wordToNumber(finalTranscript.toLowerCase()));
@@ -116,19 +119,19 @@ recognition.onresult = function(event) {
 
                                 speakText('Please select the X value')
                                 headerNames.forEach((type, index) => {
-                                    speakText(`${index + 1}: ${type}`);
+                                    speakTextQueue(`${index + 1}: ${type}`);
                                 });
                             } else {
                                 speakText('Please select a visualization type.')
                                 radioValues.forEach((type, index) => {
-                                    speakText(`${index + 1}: ${type}`);
+                                    speakTextQueue(`${index + 1}: ${type}`);
                                 });
                             }
                         } else if (finalTranscript.toLowerCase().includes("repeat") ||
                             finalTranscript.toLowerCase().includes("continue")) {
                             speakText('Please select a visualization type.')
                             radioValues.forEach((type, index) => {
-                                speakText(`${index + 1}: ${type}`);
+                                speakTextQueue(`${index + 1}: ${type}`);
                             });
                         }
 
@@ -148,18 +151,16 @@ recognition.onresult = function(event) {
                             } else {
                                 speakText('Please select the X value')
                                 headerNames.forEach((type, index) => {
-                                    speakText(`${index + 1}: ${type}`);
+                                    speakTextQueue(`${index + 1}: ${type}`);
                                 });
                             }
                         } else if (finalTranscript.toLowerCase().includes("repeat") ||
                             finalTranscript.toLowerCase().includes("continue")) {
                             speakText('Please select the X value')
                             headerNames.forEach((type, index) => {
-                                speakText(`${index + 1}: ${type}`);
+                                speakTextQueue(`${index + 1}: ${type}`);
                             });
                         }
-
-
                     } else if (speechVisualStarted == true &&
                         speechFileSelected == true &&
                         speechGraphSelected == true &&
@@ -179,14 +180,14 @@ recognition.onresult = function(event) {
                             } else {
                                 speakText('Please select the Y value')
                                 headerNames.forEach((type, index) => {
-                                    speakText(`${index + 1}: ${type}`);
+                                    speakTextQueue(`${index + 1}: ${type}`);
                                 });
                             }
                         } else if (finalTranscript.toLowerCase().includes("repeat") ||
                             finalTranscript.toLowerCase().includes("continue")) {
                             speakText('Please select the Y value')
                             headerNames.forEach((type, index) => {
-                                speakText(`${index + 1}: ${type}`);
+                            speakTextQueue(`${index + 1}: ${type}`);
                             });
                         }
 
@@ -255,13 +256,15 @@ function handleSpeechFileSelect() {
     } else {
         speakText("You have selected file" + file.name + ". Now Please select a visualization type.");
         speechFileSelected = true;
-        var radioButtons = document.getElementsByClassName('tab');
+        if ( radioValues !== undefined) {
+            var radioButtons = document.getElementsByClassName('tab');
 
-        for (var i = 0; i < radioButtons.length; i++) {
-            radioValues.push(radioButtons[i].textContent);
+            for (var i = 0; i < radioButtons.length; i++) {
+                radioValues.push(radioButtons[i].textContent);
+            }
         }
         radioValues.forEach((type, index) => {
-            speakText(`${index + 1}: ${type}`);
+            speakTextQueue(`${index + 1}: ${type}`);
         });
     }
 }
@@ -469,7 +472,7 @@ function initializeIndex() {
 
 function initializeHome() {
     if (getCookie('speech') == 2) {
-        speakText('You can say command Start to start the visualization. For help say help or click CTRL+ALT+H');
+        speakText('You can say Start to start the visualization. For help say help or click CTRL+ALT+H');
     }
 
     document.addEventListener("keyup", keyUp);
@@ -860,6 +863,7 @@ function updateRangeValue(updateValue, finalvalue = undefined) {
     } else {
         newValue = parseInt(rangeInput.value) + parseInt(updateValue);
     }
+    if(newValue>100){newValue=100;}
     rangeInput.value = newValue;
 
     rangeInput.parentNode.style.setProperty('--value', newValue);
@@ -875,8 +879,13 @@ let utterance = new SpeechSynthesisUtterance();
 let textQueue = [];
 let isSpeaking = false;
 
+function  speakText(text){
+    utterance.text = text;
+        synth.speak(utterance);
+}
+
 // Function to speak text
-function speakText(text) {
+function speakTextQueue(text) {
     textQueue.push(text);
 
     if (!isSpeaking) {
