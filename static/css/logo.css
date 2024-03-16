@@ -1,0 +1,378 @@
+﻿        @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+        .navbar-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        
+        .stroketext {
+            width: 100%;
+            z-index: 10;
+            overflow: hidden;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-image: linear-gradient(45deg, #dfe0fb, #fef6bf);
+            font-family: "Fredoka One", cursive;
+            display: flex;
+        }
+
+        .title {
+            justify-content: center;
+            align-items: center;
+            font-size: 6.25vmax;
+            position: relative;
+            color: lightsteelblue;
+            display: inline-block;
+            z-index: -1;
+            top: -5px;
+            left: 3px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .title::before, .title::after {
+            content: attr(data-text);
+        }
+
+
+        .title::before {
+            text-anchor: middle;
+            position: absolute;
+        }
+
+        .star-wrapper .star {
+            position: absolute;
+            font-size: 2rem;
+            color: pink;
+            display: inline-block;
+            -webkit-animation: scaling 1s both infinite alternate;
+            animation: scaling 1s both infinite alternate;
+        }
+
+        .star-wrapper .star::before, .star-wrapper .star::after {
+            content: "✦";
+        }
+
+        .star-wrapper .star::after {
+            -webkit-text-stroke: 2px #000;
+            color: transparent;
+        }
+
+        .star-wrapper .star::before {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            z-index: -1;
+        }
+
+        .star-wrapper .star:nth-of-type(1) {
+            top: 68%;
+            left: 32%;
+            color: paleturquoise;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        .star-wrapper .star:nth-of-type(2) {
+            top: 33%;
+            left: 87%;
+            color: khaki;
+            -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+        }
+
+        .star-wrapper .star:nth-of-type(3) {
+            top: 55%;
+            left: 21%;
+            color: thistle;
+            -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+        }
+
+        .star-wrapper .star:nth-of-type(4) {
+            top: 52%;
+            left: 68%;
+            color: thistle;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        .star-wrapper .star:nth-of-type(5) {
+            top: 21%;
+            left: 56%;
+            color: peachpuff;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        .star-wrapper .star:nth-of-type(6) {
+            top: 20%;
+            left: 40%;
+            color: lightsalmon;
+            -webkit-animation-delay: 0.5s;
+            animation-delay: 0.5s;
+        }
+
+        .star-wrapper .star:nth-of-type(7) {
+            top: 56%;
+            left: 9%;
+            color: lightsalmon;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .star-wrapper .star:nth-of-type(8) {
+            top: 13%;
+            left: 43%;
+            color: pink;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .star-wrapper .star:nth-of-type(9) {
+            top: 46%;
+            left: 26%;
+            color: paleturquoise;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .star-wrapper .star:nth-of-type(10) {
+            top: 49%;
+            left: 57%;
+            color: paleturquoise;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .star-wrapper .star:nth-of-type(11) {
+            top: 39%;
+            left: 58%;
+            color: lightsalmon;
+            -webkit-animation-delay: 0.5s;
+            animation-delay: 0.5s;
+        }
+
+        .star-wrapper .star:nth-of-type(12) {
+            top: 69%;
+            left: 89%;
+            color: paleturquoise;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .star-wrapper .star:nth-of-type(13) {
+            top: 64%;
+            left: 49%;
+            color: peachpuff;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        .star-wrapper .star:nth-of-type(14) {
+            top: 95%;
+            left: 93%;
+            color: peachpuff;
+            -webkit-animation-delay: 0.8s;
+            animation-delay: 0.8s;
+        }
+
+        .star-wrapper .star:nth-of-type(15) {
+            top: 43%;
+            left: 84%;
+            color: thistle;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        .cross-wrapper .cross {
+            position: absolute;
+            font-size: 1.5rem;
+            color: pink;
+            display: inline-block;
+            -webkit-animation: scaling 1s both infinite alternate;
+            animation: scaling 1s both infinite alternate;
+        }
+
+        .cross-wrapper .cross::before, .cross-wrapper .cross::after {
+            content: "●";
+        }
+
+        .cross-wrapper .cross::after {
+            -webkit-text-stroke: 2px #000;
+            color: transparent;
+        }
+
+        .cross-wrapper .cross::before {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            z-index: -1;
+        }
+
+        .cross-wrapper .cross:nth-of-type(1) {
+            top: 38%;
+            left: 49%;
+            color: khaki;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(2) {
+            top: 66%;
+            left: 59%;
+            color: thistle;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(3) {
+            top: 92%;
+            left: 71%;
+            color: pink;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(4) {
+            top: 41%;
+            left: 27%;
+            color: thistle;
+            -webkit-animation-delay: 0.9s;
+            animation-delay: 0.9s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(5) {
+            top: 62%;
+            left: 7%;
+            color: lightsalmon;
+            -webkit-animation-delay: 0.5s;
+            animation-delay: 0.5s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(6) {
+            top: 27%;
+            left: 80%;
+            color: thistle;
+            -webkit-animation-delay: 0.1s;
+            animation-delay: 0.1s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(7) {
+            top: 16%;
+            left: 90%;
+            color: khaki;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(8) {
+            top: 16%;
+            left: 48%;
+            color: paleturquoise;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(9) {
+            top: 28%;
+            left: 60%;
+            color: khaki;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(10) {
+            top: 64%;
+            left: 63%;
+            color: khaki;
+            -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(11) {
+            top: 87%;
+            left: 93%;
+            color: lightsalmon;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(12) {
+            top: 88%;
+            left: 26%;
+            color: pink;
+            -webkit-animation-delay: 0.5s;
+            animation-delay: 0.5s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(13) {
+            top: 55%;
+            left: 15%;
+            color: lightsalmon;
+            -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(14) {
+            top: 93%;
+            left: 94%;
+            color: pink;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        .cross-wrapper .cross:nth-of-type(15) {
+            top: 40%;
+            left: 43%;
+            color: thistle;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+        }
+
+        @-webkit-keyframes scaling {
+            0% {
+                transform: scale(0.8);
+            }
+        }
+
+        @keyframes scaling {
+            0% {
+                transform: scale(0.8);
+            }
+        }
+
+        svg text {
+            font-size: 6.25vmax;
+            /* font-size: 1rem; */
+            fill: transparent;
+            stroke: #000;
+            stroke-width: 2px;
+            animation: animated-stroke 3s;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            z-index: 2;
+        }
+
+        @keyframes animated-stroke {
+            0% {
+                stroke-dasharray: 0 80%;
+            }
+            100% {
+                stroke-dasharray: 10% 0%;
+                stroke-dashoffset: 25%;
+            }
+        }
