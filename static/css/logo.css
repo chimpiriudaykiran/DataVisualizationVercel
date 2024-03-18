@@ -17,10 +17,27 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            background-image: linear-gradient(45deg, #dfe0fb, #fef6bf);
+            background-image: linear-gradient(0, #dfe0fb, #fef6bf);
             font-family: "Fredoka One", cursive;
             display: flex;
+            animation: colorspin 0.5s linear infinite;
         }
+        @keyframes colorspin {
+  0% { background-image: linear-gradient(0deg, #dfe0fb, #fef6bf); }
+  10% { background-image: linear-gradient(36deg, #dfe0fb, #fef6bf); }
+  20% { background-image: linear-gradient(72deg, #dfe0fb, #fef6bf); }
+  30% { background-image: linear-gradient(108deg, #dfe0fb, #fef6bf); }
+  40% { background-image: linear-gradient(144deg, #dfe0fb, #fef6bf); }
+  50% { background-image: linear-gradient(180deg, #dfe0fb, #fef6bf); }
+  60% { background-image: linear-gradient(216deg, #dfe0fb, #fef6bf); }
+  70% { background-image: linear-gradient(252deg, #dfe0fb, #fef6bf); }
+  80% { background-image: linear-gradient(288deg, #dfe0fb, #fef6bf); }
+  90% { background-image: linear-gradient(324deg, #dfe0fb, #fef6bf); }
+  100% { background-image: linear-gradient(360deg, #dfe0fb, #fef6bf); }
+}
+
+
+
 
         .title {
             justify-content: center;
