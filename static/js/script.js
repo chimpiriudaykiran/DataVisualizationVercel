@@ -393,7 +393,7 @@ function stopRecording() {
 
 function keyDown(event) {
     console.log(event.key + 'Pressed');
-    if (event.ctrlKey && event.altKey && event.key === 's') {
+    if (event.key === 's') {
         sKeyPressed = true;
         startRecording();
     } else if (event.key === ' ') {
@@ -408,7 +408,7 @@ function keyDown(event) {
 
 function keyUp(event) {
     console.log(event.key + 'Released');
-    if (event.ctrlKey && event.altKey && event.key === 's') {
+    if (event.key === 's') {
         stopRecording();
         sKeyPressed = false;
         sRecording = false;
@@ -426,32 +426,32 @@ function keyUp(event) {
                 speakText('Speech mode is on');
             }
         }
-    } else if (event.ctrlKey && event.altKey && event.key === 'u') {
+    } else if (event.key === 'u') {
         document.getElementById('upload-data').click();
-    } else if (event.ctrlKey && event.altKey && event.key === 'r') {
+    } else if (event.key === 'r') {
         toggleGraphs();
-    } else if (event.ctrlKey && event.altKey && event.key === 'x') {
+    } else if (event.key === 'x') {
         toggleXAxis();
-    } else if (event.ctrlKey && event.altKey && event.key === 'y') {
+    } else if (event.key === 'y') {
         toggleYAxis();
-    } else if (event.ctrlKey && event.altKey && event.key === 'Enter') {
+    } else if (event.key === 'Enter') {
         callGraph();
-    } else if (event.ctrlKey && event.altKey && event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight') {
         updateRangeValue(5);
-    } else if (event.ctrlKey && event.altKey && event.key === 'ArrowLeft') {
+    } else if (event.key === 'ArrowLeft') {
         updateRangeValue(-5);
-    } else if (event.ctrlKey && event.altKey && event.key === 't') {
+    } else if (event.key === 't') {
         if (getCookie('speech') == 1 || getCookie('speech') == 2) {
             speakText(document.getElementById('text-output').innerHTML);
         }
-    } else if (event.ctrlKey && event.altKey && event.key === 'c') {
+    } else if (event.key === 'c') {
         swapValues();
-    } else if (event.ctrlKey && event.altKey && event.key === 'd') {
+    } else if (event.key === 'd') {
         document.getElementById("darkmode-toggle").click();
-    } else if ((event.ctrlKey && event.altKey && event.key === 'm') || event.key === 'Escape') {
+    } else if ((event.key === 'm') || event.key === 'Escape') {
         stopSpeaking();
         myKnobs.toggle(0);
-    } else if (event.ctrlKey && event.altKey && event.key === 'h') {
+    } else if (event.key === 'h') {
         document.getElementById('helpButton').click();
     } else if (event.key === ' ') {
         if (recognizing === true) {
@@ -472,7 +472,7 @@ function initializeIndex() {
 
 function initializeHome() {
     if (getCookie('speech') == 2) {
-        speakText('You can say Start to start the visualization. For help say help or click CTRL+ALT+H');
+        speakText('You can say Start to start the visualization. For help say help or click H');
     }
 
     document.addEventListener("keyup", keyUp);

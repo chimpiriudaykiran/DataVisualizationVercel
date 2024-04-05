@@ -3,13 +3,10 @@ import json
 import pandas as pd
 import plotly.express as px
 from flask import Flask, jsonify, request, render_template
-from flask_cors import CORS
 
 import chatgpt
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost"])
-
 
 def generate_text(graph_type, x_axis, y_axis=None, filtered_df=None):
     text = ""
