@@ -50,4 +50,4 @@ To run the application locally, follow these steps:
 
 ## Contact
 
-For questions or inquiries, please contact [your-email@example.com](mailto:udaykiranchimpiri@gmail.com).
+For questions or inquiries, please contact [udaykirancgimpiri@gmail.com](mailto:udaykiranchimpiri@gmail.com).
