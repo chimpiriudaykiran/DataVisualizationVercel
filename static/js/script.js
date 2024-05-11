@@ -112,27 +112,39 @@ recognition.onresult = function(event) {
                         speechYSelected === undefined &&
                         speechAmountSelected == false) {
 
+                       radioValues.forEach((type, index) => {
+                           if (finalTranscript.toLowerCase().includes(type.toLowerCase())){
+                               selectedNumber = index + 1;
+                           }
+                       });
+
                         if (selectedNumber) {
                             if (selectedNumber >= 1 && selectedNumber <= radioValues.length) {
                                 toggleGraphs(selectedNumber - 1);
                                 speechGraphSelected = true;
 
-                                speakText('Please select the X value')
+                                let concatenatedText = "Please select the X value. \n";
+
                                 headerNames.forEach((type, index) => {
-                                    speakTextQueue(`${index + 1}: ${type}`);
+                                    concatenatedText += `${index + 1}: ${type}\n`;
                                 });
+                                speakTextQueue(concatenatedText);
                             } else {
-                                speakText('Please select a visualization type.')
+                                let concatenatedText = "Please select a visualization type. \n";
+
                                 radioValues.forEach((type, index) => {
-                                    speakTextQueue(`${index + 1}: ${type}`);
+                                    concatenatedText += `${index + 1}: ${type}\n`;
                                 });
+                                speakTextQueue(concatenatedText);
                             }
                         } else if (finalTranscript.toLowerCase().includes("repeat") ||
                             finalTranscript.toLowerCase().includes("continue")) {
-                            speakText('Please select a visualization type.')
-                            radioValues.forEach((type, index) => {
-                                speakTextQueue(`${index + 1}: ${type}`);
-                            });
+                                let concatenatedText = "Please select a visualization type. \n";
+
+                                radioValues.forEach((type, index) => {
+                                    concatenatedText += `${index + 1}: ${type}\n`;
+                                });
+                                speakTextQueue(concatenatedText);
                         }
 
 
@@ -143,23 +155,40 @@ recognition.onresult = function(event) {
                         speechYSelected === undefined &&
                         speechAmountSelected == false) {
 
+                        headerNames.forEach((type, index) => {
+                           if (finalTranscript.toLowerCase().includes(type.toLowerCase())){
+                               selectedNumber = index + 1;
+                           }
+                       });
                         if (selectedNumber) {
                             if (selectedNumber >= 1 && selectedNumber <= headerNames.length) {
                                 toggleXAxis(selectedNumber);
                                 speechXSelected = selectedNumber;
-                                speakText('Please select the Y value')
+                                graphType = document.getElementsByName('graph-type').value;
+                                if (graphType == 'bar' || graphType == 'line' || graphType == 'scatter') {
+                                    speakText('Please select the Y value')
+                                }
+                                else{
+                                    speechYSelected = selectedNumber;
+                                    speakText('Please select the amount of data you want to select');
+                                }
+
                             } else {
-                                speakText('Please select the X value')
+                                let concatenatedText = "Please select the X value. \n";
+
                                 headerNames.forEach((type, index) => {
-                                    speakTextQueue(`${index + 1}: ${type}`);
+                                    concatenatedText += `${index + 1}: ${type}\n`;
                                 });
+                                speakTextQueue(concatenatedText);
                             }
                         } else if (finalTranscript.toLowerCase().includes("repeat") ||
                             finalTranscript.toLowerCase().includes("continue")) {
-                            speakText('Please select the X value')
+                            let concatenatedText = "Please select the X value. \n";
+
                             headerNames.forEach((type, index) => {
-                                speakTextQueue(`${index + 1}: ${type}`);
+                                concatenatedText += `${index + 1}: ${type}\n`;
                             });
+                            speakTextQueue(concatenatedText);
                         }
                     } else if (speechVisualStarted == true &&
                         speechFileSelected == true &&
@@ -168,6 +197,11 @@ recognition.onresult = function(event) {
                         speechYSelected === undefined &&
                         speechAmountSelected == false) {
 
+                        headerNames.forEach((type, index) => {
+                           if (finalTranscript.toLowerCase().includes(type.toLowerCase())){
+                               selectedNumber = index + 1;
+                           }
+                       });
                         if (selectedNumber) {
                             if (selectedNumber >= 1 && selectedNumber <= headerNames.length) {
                                 if (speechXSelected === selectedNumber) {
@@ -178,17 +212,21 @@ recognition.onresult = function(event) {
                                     speakText('Please select the amount of data you want to select');
                                 }
                             } else {
-                                speakText('Please select the Y value')
+                              let concatenatedText = "Please select the Y value. \n";
+
                                 headerNames.forEach((type, index) => {
-                                    speakTextQueue(`${index + 1}: ${type}`);
+                                    concatenatedText += `${index + 1}: ${type}\n`;
                                 });
+                                speakTextQueue(concatenatedText);
                             }
                         } else if (finalTranscript.toLowerCase().includes("repeat") ||
                             finalTranscript.toLowerCase().includes("continue")) {
-                            speakText('Please select the Y value')
+                            let concatenatedText = "Please select the Y value. \n";
+
                             headerNames.forEach((type, index) => {
-                            speakTextQueue(`${index + 1}: ${type}`);
+                                concatenatedText += `${index + 1}: ${type}\n`;
                             });
+                            speakTextQueue(concatenatedText);
                         }
 
 
@@ -203,12 +241,15 @@ recognition.onresult = function(event) {
                             if (selectedNumber >= 1 && selectedNumber <= 100) {
                                 updateRangeValue(0, selectedNumber);
                                 speechAmountSelected = true;
-                                speakText('You have selected');
-                                speakText('Graph type as ' + selectedGraphType);
-                                speakText('X-axis as ' + headerNames[selectedX]);
-                                speakText('Y-axis as ' + headerNames[selectedY]);
-                                speakText('Data percentage:' + selectedAmount);
-                                speakText('Please say yes to cotinue with visualisation or no to restart');
+                                let concatenatedText = "You have selected. \n";
+
+                                concatenatedText += 'Graph type as ' + selectedGraphType + "\n";
+                                concatenatedText += 'X-axis as ' + headerNames[selectedX] + "\n";
+                                concatenatedText += 'Y-axis as ' + headerNames[selectedY] + "\n";
+                                concatenatedText += 'Data percentage:' + selectedAmount + "\n";
+                                concatenatedText += 'Please say yes to cotinue with visualisation or no to restart';
+
+                                speakTextQueue(concatenatedText);
                             } else {
                                 speakText('Please select the between 1 and 100');
                             }
@@ -263,9 +304,14 @@ function handleSpeechFileSelect() {
                 radioValues.push(radioButtons[i].textContent);
             }
         }
+
+        let concatenatedText = "";
         radioValues.forEach((type, index) => {
-            speakTextQueue(`${index + 1}: ${type}`);
+            concatenatedText += `${index + 1}: ${type}\n`;
         });
+
+        speakTextQueue(concatenatedText);
+
     }
 }
 
