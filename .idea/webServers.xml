@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4fdb038a-420c-4199-a38f-3beba54c5cdf" name="DataVisualization" url="WadHXPWa5m5tpdGgeciaicKoqAJg96KQ9tSkWta7ixfSlyHewHEpSaL0WsjA">
+        <fileTransfer explicitFtps="false" rootFolder="/site/wwwroot" accessType="FTPS" host="4.227.177.47" port="990">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

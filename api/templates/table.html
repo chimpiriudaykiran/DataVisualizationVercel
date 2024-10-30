@@ -165,7 +165,7 @@
     <link rel="stylesheet" href="./static/css/darkmode.css">
 </head>
 
-<body id="page-top" style="overflow: hidden" onload="initializeHome();">
+<body id="page-top" style="overflow: hidden" onload="initializeIndex()">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <div id="navbar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" style="background-color: #122047; background-image: linear-gradient(180deg,#102153 10%,#101520 100%); background-size: cover;">
@@ -173,7 +173,7 @@
             <ul id="accordionSidebar" style="list-style-type:none; padding: 0px;">
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link" href="./">
+                    <a class="nav-link" href="">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -183,15 +183,15 @@
                 <!-- Heading -->
                 <div class="sidebar-heading">Visualization</div>
                 <!-- Nav Item - Charts -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">
+                <li class="nav-item">
+                    <a class="nav-link" href="home">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span>
                     </a>
                 </li>
                 <!-- Nav Item - Tables -->
-                <li class="nav-item">
-                    <a class="nav-link" href="table">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Tables</span>
                     </a>
@@ -210,17 +210,17 @@
                 <input type="checkbox" id="darkmode-toggle" onchange="toggleTheme(this)" onload="toggleTheme(this)" value="" />
                 <label for="darkmode-toggle" id="darkmode-toggle-label">
                       <svg version="1.1" class="sun" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 496 496" style="enable-background:new 0 0 496 496;" xml:space="preserve">
-                    
+
                         <rect x="152.994" y="58.921" transform="matrix(0.3827 0.9239 -0.9239 0.3827 168.6176 -118.5145)" width="40.001" height="16" />
                         <rect x="46.9" y="164.979" transform="matrix(0.9239 0.3827 -0.3827 0.9239 71.29 -12.4346)" width="40.001" height="16" />
                         <rect x="46.947" y="315.048" transform="matrix(0.9239 -0.3827 0.3827 0.9239 -118.531 50.2116)" width="40.001" height="16" />
-                    
+
                         <rect x="164.966" y="409.112" transform="matrix(-0.9238 -0.3828 0.3828 -0.9238 168.4872 891.7491)" width="16" height="39.999" />
-                    
+
                         <rect x="303.031" y="421.036" transform="matrix(-0.3827 -0.9239 0.9239 -0.3827 50.2758 891.6655)" width="40.001" height="16" />
-                    
+
                         <rect x="409.088" y="315.018" transform="matrix(-0.9239 -0.3827 0.3827 -0.9239 701.898 785.6559)" width="40.001" height="16" />
-                    
+
                         <rect x="409.054" y="165.011" transform="matrix(-0.9239 0.3827 -0.3827 -0.9239 891.6585 168.6574)" width="40.001" height="16" />
                         <rect x="315.001" y="46.895" transform="matrix(0.9238 0.3828 -0.3828 0.9238 50.212 -118.5529)" width="16" height="39.999" />
                         <path d="M248,88c-88.224,0-160,71.776-160,160s71.776,160,160,160s160-71.776,160-160S336.224,88,248,88z M248,392
@@ -228,10 +228,10 @@
                         <rect x="240" width="16" height="72" />
                         <rect x="62.097" y="90.096" transform="matrix(0.7071 0.7071 -0.7071 0.7071 98.0963 -40.6334)" width="71.999" height="16" />
                         <rect y="240" width="72" height="16" />
-                    
+
                         <rect x="90.091" y="361.915" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -113.9157 748.643)" width="16" height="71.999" />
                         <rect x="240" y="424" width="16" height="72" />
-                    
+
                         <rect x="361.881" y="389.915" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 397.8562 960.6281)" width="71.999" height="16" />
                         <rect x="424" y="240" width="72" height="16" />
                         <rect x="389.911" y="62.091" transform="matrix(0.7071 0.7071 -0.7071 0.7071 185.9067 -252.6357)" width="16" height="71.999" />
@@ -251,7 +251,8 @@
         <div id="content" style="margin-left: 6.5rem!important;width: 100%; padding: 10px;">
             <div class="container-fluid shadow-sm p-3 mb-5 rounded rounded border" style="
             position: relative;
-            min-height: 640px;">
+            min-height: 640px;
+        ">
                 <div style="width: 80%; margin: 0px auto;">
                     <div style="color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
                         <div class="" aria-disabled="false" style="border: black;position: relative;width: 100%;height: auto;border-width: 1px;border-style: dashed;border-radius: 5px;text-align: center;margin: 5px;">
@@ -259,98 +260,21 @@
                             <button for="upload-data" class="shadow" id="upload-button" style="color: white; background-color: rgb(0, 123, 255); padding: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="document.getElementById('upload-data').click()">Upload File</button>
                         </div>
                     </div>
+                </div>
 
-                    <div style="margin-left: 20px; margin-right: 20px; display: flex; justify-content: space-evenly; align-items: flex-end; margin-bottom: 5px;">
-                        <div class="container-radio">
-                            <div class="tabs">
-                                <input type="radio" id="radio-1" name="graph-type" checked value="bar" />
-                                <label class="tab" for="radio-1">Bar</label>
-                                <input type="radio" id="radio-2" name="graph-type" value="pie" />
-                                <label class="tab" for="radio-2">Pie</label>
-                                <input type="radio" id="radio-3" name="graph-type" value="scatter" />
-                                <label class="tab" for="radio-3">Scatter</label>
-                                <input type="radio" id="radio-4" name="graph-type" value="line" />
-                                <label class="tab" for="radio-4">Line</label>
-                                <input type="radio" id="radio-5" name="graph-type" value="histogram" />
-                                <label class="tab" for="radio-5">Histogram</label>
-                                <span class="glider"></span>
-                            </div>
-                        </div>
-
-                        <div style="width: 100%; margin-left: 10px; display: flex; flex-direction: column;">
-                            <div style="display: flex;">
-                                <div style="display: inline-block; width: 170px;">
-                                    <label style="margin-right: 10px;">X-Axis:</label>
-                                </div>
-                                <div style="flex:1;"></div>
-                                <div style="display: inline-block; width: 170px;">
-                                    <label style="margin-right: 10px;">Y-Axis:</label>
-                                </div>
-                            </div>
-                            <div style="display: flex; align-items: center; align-content: center;">
-                                <div style="display: inline-block; width: 170px;">
-                                    <select class="form-select md-3" id="x-axis-dropdown" style="box-shadow: 2px 4px 13px 0px rgb(0, 123, 255, 0.15); font-size: var(--bs-body-font-size); font-weight: var(--bs-body-font-weight); line-height: var(--bs-body-line-height);">
-                              <option selected hidden>Select X-axis</option>
-                            </select>
-                                </div>
-
-                                <div style="flex:1;"></div>
-                                <i class="fa-solid fa-repeat" style="
-                                      cursor: pointer;
-                                      font-size: var(--bs-body-font-size);
-                                      color: var(--bs-body-color);
-                                      line-height: var(--bs-body-line-height);" onclick="swapValues();" title="Swap Values"></i>
-                                <div style="flex:1;"></div>
-
-                                <div style="display: inline-block; width: 170px;">
-                                    <select class="form-select md-3" id="y-axis-dropdown" style=" box-shadow: 2px 4px 13px 0px rgb(0, 123, 255, 0.15); font-size: var(--bs-body-font-size); font-weight: var(--bs-body-font-weight); line-height: var(--bs-body-line-height);">
-                            <option selected hidden>Select Y-axis</option>
-                        </select>
-                                </div>
-                            </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table id="dataTable" class="table table-striped">
+                                <thead>
+                                    <!-- Table headers will be generated dynamically -->
+                                </thead>
+                                <tbody>
+                                    <!-- Table body will be generated dynamically -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
-
-
-                    <div style="display: flex;margin-bottom: 15px;flex-direction: row;flex-wrap: nowrap;align-content: center;justify-content: space-around;align-items: center;">
-                        <div>
-                            <label for="amountrange">Select the amount of data:</label>
-                            <br>
-                            <div class="range-slider" style='--min:0; --max:100; --step:5; --value:10; --text-value:"10";'>
-                                <input id="amountrange" type="range" min="0" max="100" step="5" value="10" oninput="this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value))">
-                                <output></output>
-                                <div class="range-slider__progress"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <button id="submit" class="shadow" style="color: white; background-color: rgb(0, 123, 255); padding: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="callGraph()">Submit</button>
-                        </div>
-                    </div>
-                    <div id="texts" style="width:100%; height:100%;display: inline;">
-                        <div style="position: relative;z-index: 10;display: flex;width: 100%;height: 100%;align-content: flex-start;justify-content: center;align-items: flex-start;flex-direction: row;flex-wrap: wrap;">
-                            <div class="container-text w3-theme w3-round-xxlarge" style="min-height: 40px; min-width: 120px; max-width: 100%; text-align: center;">
-                                <p id="recognizedText" align="center" style="padding-right: 10px;padding-left: 10px;position: relative;font-family:'Fredoka One', cursive;text-align: center!important;white-space: normal;overflow-wrap: anywhere;top: 50%;left: 50%;transform: translate(-50%, 50%);">You can see the recognized text here</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="chart_div" style="height: 470px;">
-                        <div id="loading-spinner" style="width:100%; height:100%;display: none;">
-                            <div class="load-wrapp">
-                                <div class="load-1">
-                                    <div class="line"></div>
-                                    <div class="line"></div>
-                                    <div class="line"></div>
-                                    <div class="line"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <iframe id="html-iframe" style="display: none;" scrolling="no"></iframe>
-                    </div>
-                    <div id="text-output"></div>
-                    <br>
-                    <br>
                 </div>
             </div>
         </div>
@@ -365,47 +289,47 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="stopSpeaking()"></button>
                 </div>
                 <div class="modal-body" id="modal-body">
-                    <p><strong>Key Combination: S</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + S</strong></p>
                     <p><strong>Action:</strong> Toggles speech mode on and off.</p>
                     <p><strong>Description:</strong> This shortcut checks if the keys pressed are Ctrl, Alt, and 's'. If so, it toggles speech mode by checking the current state stored in a cookie and then either turns speech mode on or off accordingly.</p>
                     <hr>
-                    <p><strong>Key Combination: U</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + U</strong></p>
                     <p><strong>Action:</strong> Triggers the click event of the element with the ID 'upload-data'.</p>
                     <p><strong>Description:</strong> This shortcut is used for triggering an upload action, possibly for uploading data or files.</p>
                     <hr>
-                    <p><strong>Key Combination: R</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + R</strong></p>
                     <p><strong>Action:</strong> Toggles graphs on and off.</p>
                     <p><strong>Description:</strong> This shortcut toggles the visibility of graphs on the web page.</p>
                     <hr>
-                    <p><strong>Key Combination: X</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + X</strong></p>
                     <p><strong>Action:</strong> Toggles the X-axis of graphs.</p>
                     <p><strong>Description:</strong> This shortcut toggles the X-axis display of the graphs.</p>
                     <hr>
-                    <p><strong>Key Combination: Y</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + Y</strong></p>
                     <p><strong>Action:</strong> Toggles the Y-axis of graphs.</p>
                     <p><strong>Description:</strong> This shortcut toggles the Y-axis display of the graphs.</p>
                     <hr>
-                    <p><strong>Key Combination: Enter</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + Enter</strong></p>
                     <p><strong>Action:</strong> Calls a graph function.</p>
                     <p><strong>Description:</strong> This shortcut triggers a function that generates or updates a graph.</p>
                     <hr>
-                    <p><strong>Key Combination: Arrow Right</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + Arrow Right</strong></p>
                     <p><strong>Action:</strong> Updates the range value (likely for a slider or similar UI element) by incrementing it.</p>
                     <p><strong>Description:</strong> This shortcut is used to increment a range value, possibly for navigating through data or adjusting a parameter.</p>
                     <hr>
-                    <p><strong>Key Combination: Arrow Left</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + Arrow Left</strong></p>
                     <p><strong>Action:</strong> Updates the range value by decrementing it.</p>
                     <p><strong>Description:</strong> Similar to the previous shortcut, this one decrements the range value.</p>
                     <hr>
-                    <p><strong>Key Combination: T</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + T</strong></p>
                     <p><strong>Action:</strong> Speaks out text content.</p>
                     <p><strong>Description:</strong> This shortcut, when pressed, speaks out the content of an element with the ID 'text-output', provided that speech mode is enabled.</p>
                     <hr>
-                    <p><strong>Key Combination: C</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + C</strong></p>
                     <p><strong>Action:</strong> Swaps values.</p>
                     <p><strong>Description:</strong> This shortcut triggers a function to swap values, possibly within the application context.</p>
                     <hr>
-                    <p><strong>Key Combination: M</strong></p>
+                    <p><strong>Key Combination: Ctrl + Alt + M</strong></p>
                     <p><strong>Action:</strong> Stops speaking.</p>
                     <p><strong>Description:</strong> This shortcut stops any ongoing speech output.</p>
                 </div>
@@ -423,6 +347,78 @@
     <script src="./static/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="./static/js/sb-admin-2.min.js"></script>
+
+    <script>
+        document.getElementById('upload-data').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            var finalData = [];
+            var headerNames = [];
+            var reader = new FileReader();
+
+            if (file) {
+                if (file.name.endsWith('.csv')) {
+                    reader.onload = function(event) {
+                        Papa.parse(event.target.result, {
+                            complete: function(results) {
+                                var filteredData = results.data.filter(row => row.some(cell => cell.trim() !== ''));
+                                var parsedData = filteredData.map(row => row.map(cell => isNaN(cell) ? String(cell) : parseFloat(cell)));
+                                parsedData.sort((a, b) => a[0] - b[0]);
+                                headerNames = filteredData[0];
+                                finalData = parsedData;
+                                processData(finalData.slice(1), headerNames);
+                            }
+                        });
+                    };
+                    reader.readAsText(file);
+                } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+                    reader.onload = function(event) {
+                        var data = new Uint8Array(event.target.result);
+                        var workbook = XLSX.read(data, {
+                            type: 'array'
+                        });
+                        var sheetName = workbook.SheetNames[0];
+                        var sheet = workbook.Sheets[sheetName];
+                        var excelData = XLSX.utils.sheet_to_json(sheet, {
+                            header: 1
+                        });
+
+                        var filteredData = excelData.filter(row => row.some(cell => String(cell).trim() !== ''));
+                        var parsedData = filteredData.map(row => row.map(cell => isNaN(cell) ? String(cell) : parseFloat(cell)));
+                        parsedData.sort((a, b) => a[0] - b[0]);
+                        headerNames = filteredData[0];
+                        finalData = parsedData;
+                        processData(finalData.slice(1), headerNames);
+                    };
+                    reader.readAsArrayBuffer(file);
+                } else {
+                    console.error('Unsupported file format');
+                }
+            }
+        });
+
+        function processData(data, headers) {
+            const tbody = document.querySelector('#dataTable tbody');
+            const thead = document.querySelector('#dataTable thead');
+
+            // Create table headers
+            let headerHTML = '';
+            headers.forEach(header => {
+                headerHTML += `<th scope="col">${header}</th>`;
+            });
+            thead.innerHTML = `<tr>${headerHTML}</tr>`;
+
+            // Create table rows
+            let tbodyHTML = '';
+            data.forEach(rowData => {
+                let rowHTML = '';
+                rowData.forEach(data => {
+                    rowHTML += `<td>${data}</td>`;
+                });
+                tbodyHTML += `<tr>${rowHTML}</tr>`;
+            });
+            tbody.innerHTML = tbodyHTML;
+        }
+    </script>
 
     <script src="./static/js/knobs.min.js"></script>
     <script src="./static/js/knobs.js"></script>
